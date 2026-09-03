@@ -1,0 +1,17 @@
+# Backend (Python)
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/.env
+backend/storage/*.db
+backend/storage/uploads/*
+backend/storage/vectors/*
+!backend/storage/uploads/.gitkeep
+!backend/storage/vectors/.gitkeep
+
+# Frontend (Next.js) — frontend/.gitignore already covers node_modules, .next, etc.
+
+# OS
+.DS_Store
+Thumbs.db
