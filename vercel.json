@@ -1,18 +1,12 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/api/index.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "50mb" }
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "nextjs"
     },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
+    "backend": {
+      "root": "backend",
+      "framework": "fastapi"
     }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "backend/api/index.py" },
-    { "src": "/(.*)", "dest": "frontend/$1" }
-  ]
+  }
 }
