@@ -32,40 +32,63 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto px-6 py-10 w-full">
-      <h1 className="text-2xl font-bold text-slate-900 mb-6">Settings</h1>
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
-        <label className="block">
-          <span className="block text-xs font-medium text-slate-600 mb-1">Level</span>
+    <div className="w-full max-w-xl mx-auto px-6 py-10 space-y-8">
+      <div>
+        <h1 className="text-3xl font-black text-slate-900 tracking-tight">Account & Learning Settings</h1>
+        <p className="text-xs font-bold text-slate-500 mt-1">Configure your preferred difficulty level, language, and goals</p>
+      </div>
+
+      <div className="bg-white rounded-[2.5rem] border border-purple-100/80 p-8 shadow-sm space-y-6">
+        <label className="block space-y-2">
+          <span className="block text-xs font-black uppercase tracking-wider text-slate-500">Knowledge Level</span>
           <div className="flex gap-2">
             {LEVELS.map((l) => (
-              <button key={l} onClick={() => setForm({ ...form, level: l })} className={`px-3 py-1.5 rounded-full text-xs font-medium border capitalize ${form.level === l ? "bg-indigo-600 border-indigo-600 text-white" : "border-slate-200 text-slate-600"}`}>{l}</button>
+              <button
+                key={l}
+                onClick={() => setForm({ ...form, level: l })}
+                className={`px-4 py-2 rounded-full text-xs font-black capitalize border transition-all ${
+                  form.level === l ? "bg-slate-900 border-slate-900 text-white shadow-sm" : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
+                }`}
+              >
+                {l}
+              </button>
             ))}
           </div>
-        </label>
-        <label className="block">
-          <span className="block text-xs font-medium text-slate-600 mb-1">Language</span>
-          <div className="flex gap-2">
-            {LANGUAGES.map((l) => (
-              <button key={l} onClick={() => setForm({ ...form, language: l })} className={`px-3 py-1.5 rounded-full text-xs font-medium border ${form.language === l ? "bg-indigo-600 border-indigo-600 text-white" : "border-slate-200 text-slate-600"}`}>{l}</button>
-            ))}
-          </div>
-        </label>
-        <label className="block">
-          <span className="block text-xs font-medium text-slate-600 mb-1">Learning goal</span>
-          <input className="input" value={form.goal} onChange={(e) => setForm({ ...form, goal: e.target.value })} />
         </label>
 
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        <button onClick={save} className="w-full py-2.5 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700">
-          {saved ? "Saved ✓" : "Save Changes"}
+        <label className="block space-y-2">
+          <span className="block text-xs font-black uppercase tracking-wider text-slate-500">Spoken Language</span>
+          <div className="flex gap-2">
+            {LANGUAGES.map((l) => (
+              <button
+                key={l}
+                onClick={() => setForm({ ...form, language: l })}
+                className={`px-4 py-2 rounded-full text-xs font-black border transition-all ${
+                  form.language === l ? "bg-slate-900 border-slate-900 text-white shadow-sm" : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </label>
+
+        <label className="block space-y-2">
+          <span className="block text-xs font-black uppercase tracking-wider text-slate-500">Learning Goal</span>
+          <input className="input" value={form.goal} onChange={(e) => setForm({ ...form, goal: e.target.value })} placeholder="e.g. Master AI Fundamentals" />
+        </label>
+
+        {error && <p className="text-xs font-bold text-rose-600">{error}</p>}
+
+        <button onClick={save} className="w-full btn-black-pill py-3 text-center text-xs font-black shadow-md">
+          {saved ? "Saved Changes ✓" : "Save Settings"}
         </button>
 
         <button
           onClick={() => { clearUserId(); router.push("/"); }}
-          className="w-full py-2 text-xs text-slate-400 hover:text-slate-600"
+          className="w-full py-2.5 text-xs font-bold text-slate-400 hover:text-rose-600 transition text-center"
         >
-          Sign out of this browser
+          Sign Out of This Session
         </button>
       </div>
     </div>

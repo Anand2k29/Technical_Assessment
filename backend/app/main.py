@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title=settings.app_name, description="AUTOPSY: AI Teacher That Understands. Explains. Interacts. Adapts.", lifespan=lifespan)
 
 app.add_middleware(
-    CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=True,
+    CORSMiddleware, allow_origins=settings.all_cors_origins, allow_credentials=True,
     allow_methods=["*"], allow_headers=["*"],
 )
 
