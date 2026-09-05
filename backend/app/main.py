@@ -28,6 +28,14 @@ app.add_middleware(
 )
 
 
+@app.middleware("http")
+async def ensure_api_prefix(request: Request, call_next):
+    path = request.scope.get("path", "")
+    if path and not path.startswith("/api") and path not in ("/", "/docs", "/openapi.json", "/redoc"):
+        request.scope["path"] = "/api" + path
+    return await call_next(request)
+
+
 @app.exception_handler(Exception)
 async def unhandled_exception_handler(request: Request, exc: Exception):
     logger.exception("Unhandled error on %s %s", request.method, request.url.path)
